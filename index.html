@@ -1,0 +1,15 @@
+<html>
+    <body>
+        <img id="image">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.4/socket.io.js"></script>
+        <script>
+            const socket = io.connect('http://localhost:3000');
+            socket.on('image', (image) => {
+                const imageElm = document.getElementById('image');
+                imageElm.src = `data:image/jpeg;base64,${image}`;
+                document.getElementById('anchor').setAttribute( 'href',imageElm.src);
+            });
+        </script>
+        <a class="button" id="anchor" download="imageName.jpg">Download image</a>
+    </body>
+</html>
